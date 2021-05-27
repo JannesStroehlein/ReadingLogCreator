@@ -4,6 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
+    <AssemblyVersion>21.5.27.0</AssemblyVersion>
+    <FileVersion>21.5.27.0</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HandyControl" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReadingLogCreator.API\ReadingLogCreator.API.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ReadingLogCreator.API;
 
 namespace ReadingLogCreator.App
 {
@@ -20,6 +21,8 @@ namespace ReadingLogCreator.App
     /// </summary>
     public partial class MainWindow
     {
+        public ReadingLog ReadingLog;
+
         public MainWindow()
         {
             InitializeComponent();

@@ -26,6 +26,9 @@
             <DataTemplate DataType="{x:Type vm:ChapterViewModel}">
                 <vw:ChapterView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NewExtraDataViewModel}">
+                <vw:AddExtraDataView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <hc:Window.NonClientAreaContent>

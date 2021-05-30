@@ -24,7 +24,6 @@ namespace ReadingLogCreator.App.ViewModels
         public int ReleaseYear => this.ReadingLog.ReleaseDate.Year;
         public ObservableCollection<Chapter> Chapters => this.ReadingLog.Chapters;
         #endregion
-
         #region Commands
         public ICommand OpenChapterViewCommand
         {
@@ -49,6 +48,7 @@ namespace ReadingLogCreator.App.ViewModels
             }
         }
         #endregion
+
         public ReadingLogViewModel(ReadingLog readingLog, MainWindowViewModel parent) : base("Home", false, false)
         {
             this.ReadingLog = readingLog;

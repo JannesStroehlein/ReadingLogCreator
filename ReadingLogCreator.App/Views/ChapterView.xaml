@@ -6,21 +6,31 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
         mc:Ignorable="d"
-        Width="400" Height="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-        <DockPanel LastChildFill="True">
-            <TextBlock DockPanel.Dock="Left" Style="{StaticResource TextBlockSubTitle}">
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="#{0}">
-                        <Binding Path="Index"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-            <TextBlock Text="{Binding Path=Title}" DockPanel.Dock="Right" Style="{Binding Path=Title}"/>
-        </DockPanel>
-    </Grid>
+        d:DesignHeight="300" d:DesignWidth="600">
+    <hc:TabControl ShowCloseButton="False" ShowContextMenu="False">
+        <hc:TabItem Header="Summary">
+            <hc:TextBox Text="{Binding Path=Summary}"/>
+        </hc:TabItem>
+        <hc:TabItem Header="Notes">
+            <hc:TextBox Text="{Binding Path=Notes}"/>
+        </hc:TabItem>
+        <hc:TabItem Header="Characters">
+
+        </hc:TabItem>
+        <hc:TabItem Header="Addition Data">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Height="30" Width="30" Margin="3" Command="{Binding Path=CreateExtraDataCommand}" HorizontalAlignment="Right" Content="Add" Style="{StaticResource ButtonIcon}" hc:IconElement.Geometry="{StaticResource AddGeometry}" Background="{DynamicResource SuccessBrush}"/>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Path=ExtraInformation}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Key" Binding="{Binding Path=Key}"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Path=Value}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </hc:TabItem>
+    </hc:TabControl>
 </UserControl>

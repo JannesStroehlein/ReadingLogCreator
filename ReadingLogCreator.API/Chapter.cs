@@ -23,5 +23,14 @@ namespace ReadingLogCreator.API
         public ObservableCollection<Character> Characters { get; internal set; }
         [JsonProperty("questions")]
         public ObservableCollection<FAQQuestion> Questions { get; internal set; }
+        [JsonProperty("extraInformation")]
+        public Dictionary<string, string> ExtraInformation { get; internal set; }
+
+        public Chapter()
+        {
+            this.Characters = new ObservableCollection<Character>();
+            this.Questions = new ObservableCollection<FAQQuestion>();
+            this.ExtraInformation = new Dictionary<string, string>();
+        }
     }
 }

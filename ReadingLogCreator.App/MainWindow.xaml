@@ -30,8 +30,8 @@
             <Menu DockPanel.Dock="Left" IsEnabled="{Binding Path=MenuEnabled}">
                 <MenuItem Header="File">
                     <MenuItem Header="New" InputGestureText="Ctrl+N" Command="{Binding Path=NewReadingLogCommand}"/>
-                    <MenuItem Header="Save" InputGestureText="Ctrl+S" IsEnabled="{Binding Path=CanSave}" Command="{Binding Path=SaveCommand}"/>
-                    <MenuItem Header="Save as" InputGestureText="Ctrl+Shift+S" IsEnabled="{Binding Path=CanSave}" Command="{Binding Path=SaveAsCommand}"/>
+                    <MenuItem Header="Save" InputGestureText="Ctrl+S" Command="{Binding Path=SaveCommand}"/>
+                    <MenuItem Header="Save as" InputGestureText="Ctrl+Shift+S" Command="{Binding Path=SaveAsCommand}"/>
                     <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="{Binding Path=OpenCommand}"/>
                     <MenuItem Header="Exit" InputGestureText="Alt+F4" Command="{Binding Path=CloseCommand}"/>
                 </MenuItem>

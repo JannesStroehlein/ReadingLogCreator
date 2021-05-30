@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -59,7 +60,7 @@ namespace ReadingLogCreator.App
             {
                 if (_saveAsCommand == null)
                 {
-                    _saveAsCommand = new RelayCommand(param => this.Save(true), param => this._CanSave);
+                    _saveAsCommand = new RelayCommand(param => this.Save(true), param => this._HasActiveDocument);
                 }
                 return _saveAsCommand;
             }
@@ -159,6 +160,7 @@ namespace ReadingLogCreator.App
             {
                 if (value == this._HasActiveDocument)
                     return;
+                Debug.WriteLine(value);
                 this._HasActiveDocument = value;
                 base.OnPropertyChanged();
             }
@@ -182,7 +184,7 @@ namespace ReadingLogCreator.App
                 if (value == this._activeDocument)
                     return;
                 this._activeDocument = value;
-                this.HasActiveDocument = value != null;
+                //this.HasActiveDocument = value != null;
                 base.OnPropertyChanged();
             }
         }
@@ -213,7 +215,11 @@ namespace ReadingLogCreator.App
                                    select f).First();
                 if (myFile != null)
                     this.Open(myFile.FullName);
+                else
+                    this.HasActiveDocument = false;
             }
+            else
+                this.HasActiveDocument = false;
         }
         private void Save(bool saveAs)
         {
@@ -257,8 +263,10 @@ namespace ReadingLogCreator.App
             this.ActiveDocument = ReadingLog.Deserialize(File.ReadAllText(path));
             this.SaveLocation = path;
             this.CanSave = false;
+            
             this.UpdateWindowTitle();
             this.OpenReadingLogTab();
+            this.HasActiveDocument = true;
         }
         private void AddChapter()
         {

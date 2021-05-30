@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ReadingLogCreator.API
@@ -19,8 +20,8 @@ namespace ReadingLogCreator.API
         [JsonProperty("notes")]
         public string Notes { get; set; }
         [JsonProperty("characters")]
-        public List<Character> Characters { get; internal set; }
+        public ObservableCollection<Character> Characters { get; internal set; }
         [JsonProperty("questions")]
-        public List<FAQQuestion> Questions { get; internal set; }
+        public ObservableCollection<FAQQuestion> Questions { get; internal set; }
     }
 }

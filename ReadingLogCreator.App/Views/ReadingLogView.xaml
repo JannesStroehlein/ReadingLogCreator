@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:hc="https://handyorg.github.io/handycontrol"           
              xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
+             x:Name="ReadingLogViewElement"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
@@ -20,15 +21,26 @@
                 <TextBlock Text="{Binding Path=ReleaseYear}" DockPanel.Dock="Right" Style="{StaticResource TextBlockSubTitleBold}" Margin="5,0,0,0"/>
             </DockPanel>
         </StackPanel>
-        <ListView Grid.Row="1" Margin="3" ItemsSource="{Binding Path=Chapters}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" Header="Title" DisplayMemberBinding="{Binding Title}"/>
-                    <GridViewColumn Width="50" Header="Star Page" DisplayMemberBinding="{Binding StartPage}"/>
-                    <GridViewColumn Width="50" Header="End Page" DisplayMemberBinding="{Binding EndPage}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <GroupBox Header="Chapters" Grid.Row="1" Margin="3">
+            <DataGrid hc:DataGridAttach.ShowRowNumber="False" IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" ItemsSource="{Binding Path=Chapters}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Index" Binding="{Binding Path=Index}"/>
+                    <DataGridTextColumn Header="Title" Width="1*" Binding="{Binding Path=Title}"/>
+                    <DataGridTextColumn Header="Start Page" Binding="{Binding Path=StartPage}"/>
+                    <DataGridTextColumn Header="End Page" Binding="{Binding Path=EndPage}"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Command="{Binding Path=DataContext.OpenChapterViewCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" Style="{StaticResource ButtonIcon}" hc:IconElement.Geometry="{StaticResource EyeOpenGeometry}"/>
+                                    <Button Command="{Binding Path=DataContext.DeleteChapterCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" Style="{StaticResource ButtonIcon}" Foreground="{DynamicResource DangerBrush}" hc:IconElement.Geometry="{StaticResource DeleteFillCircleGeometry}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
         <DockPanel Grid.Row="2">
             
         </DockPanel>

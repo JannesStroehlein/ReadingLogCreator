@@ -23,6 +23,9 @@
             <DataTemplate DataType="{x:Type vm:NewChapterViewModel}">
                 <vw:NewChapterView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ChapterViewModel}">
+                <vw:ChapterView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <hc:Window.NonClientAreaContent>
@@ -43,7 +46,7 @@
             </Menu>
         </DockPanel>
     </hc:Window.NonClientAreaContent>
-    <hc:TabControl ShowCloseButton="True" ShowOverflowButton="True" ShowScrollButton="True" DockPanel.Dock="Left" ItemsSource="{Binding Path=Workspaces}" SelectedIndex="{Binding Path=SelectedIndex}" DisplayMemberPath="{Binding Path=TabTitle}">
+    <hc:TabControl ShowCloseButton="True" ShowOverflowButton="True" ShowScrollButton="True" DockPanel.Dock="Left" ItemsSource="{Binding Path=Workspaces}" SelectedIndex="{Binding Path=SelectedIndex}">
         <hc:TabControl.ItemContainerStyle>
             <Style TargetType="hc:TabItem" BasedOn="{StaticResource {x:Type hc:TabItem}}">
                 <Setter Property="Header" Value="{Binding TabTitle}"/>

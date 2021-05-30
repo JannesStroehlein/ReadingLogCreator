@@ -160,7 +160,6 @@ namespace ReadingLogCreator.App
             {
                 if (value == this._HasActiveDocument)
                     return;
-                Debug.WriteLine(value);
                 this._HasActiveDocument = value;
                 base.OnPropertyChanged();
             }
@@ -331,7 +330,7 @@ namespace ReadingLogCreator.App
         }
         private void OpenReadingLogTab()
         {
-            this.Workspaces.Add(new ReadingLogViewModel(this.ActiveDocument));
+            this.Workspaces.Add(new ReadingLogViewModel(this.ActiveDocument, this));
         }
     }
 }

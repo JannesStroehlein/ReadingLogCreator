@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ReadingLogCreator.App.Views
 {
     /// <summary>
-    /// Interaktionslogik für ChapterControl.xaml
+    /// Interaktionslogik für ReadingLogView.xaml
     /// </summary>
-    public partial class ChapterControl : UserControl
+    public partial class ReadingLogView : UserControl
     {
-        public ChapterControl()
+        public ReadingLogView()
         {
             InitializeComponent();
         }

@@ -1,6 +1,7 @@
 ﻿using HandyControl.Data;
 using HandyControl.Tools;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace ReadingLogCreator.App
@@ -10,10 +11,30 @@ namespace ReadingLogCreator.App
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
+            string SaveDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\ReadingLogCreator";
+            if (!Directory.Exists(SaveDirectory))
+                Directory.CreateDirectory(SaveDirectory);
+
+            base.OnStartup(e);
+
+            MainWindow window = new MainWindow();
+
+            // Create the ViewModel to which 
+            // the main window binds.
+            var viewModel = new MainWindowViewModel();
+
+            // Allow all controls in the window to 
+            // bind to the ViewModel by setting the 
+            // DataContext, which propagates down 
+            // the element tree.
+            window.DataContext = viewModel;
+
             ConfigHelper.Instance.SetLang("en");
             this.UpdateSkin(SkinType.Dark);
+
+            window.Show();
         }
         internal void UpdateSkin(SkinType skin)
         {

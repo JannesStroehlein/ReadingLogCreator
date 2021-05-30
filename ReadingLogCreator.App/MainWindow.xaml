@@ -4,29 +4,51 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:vm="clr-namespace:ReadingLogCreator.App.ViewModels"
+        xmlns:vw="clr-namespace:ReadingLogCreator.App.Views"
         xmlns:local="clr-namespace:ReadingLogCreator.App"
         mc:Ignorable="d"
         x:Name="Window"
         ShowTitle="False"
-        Title="Reading Log Creator" Height="450" Width="800">
+        Title="{Binding Path=WindowTitle}"
+        Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary>
+            <DataTemplate DataType="{x:Type vm:ReadingLogViewModel}">
+                <vw:ReadingLogView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NewReadingLogView}">
+                <vw:NewReadingLogView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
     <hc:Window.NonClientAreaContent>
         <DockPanel Height="29" LastChildFill="False">
-            <Menu DockPanel.Dock="Left">
+            <Menu DockPanel.Dock="Left" IsEnabled="{Binding Path=MenuEnabled}">
                 <MenuItem Header="File">
-                    <MenuItem Header="New" InputGestureText="Ctrl+N" IsEnabled="True"/>
-                    <MenuItem Header="Save" InputGestureText="Ctrl+S" IsEnabled="False"/>
-                    <MenuItem Header="Save as" InputGestureText="Ctrl+Shift+S" IsEnabled="False"/>
-                    <MenuItem Header="Open" InputGestureText="Ctrl+O"/>
-                    <MenuItem Header="Exit" InputGestureText="Alt+F4" Command="hc:ControlCommands.ShutdownApp"/>
+                    <MenuItem Header="New" InputGestureText="Ctrl+N" Command="{Binding Path=NewReadingLogCommand}"/>
+                    <MenuItem Header="Save" InputGestureText="Ctrl+S" IsEnabled="{Binding Path=CanSave}" Command="{Binding Path=SaveCommand}"/>
+                    <MenuItem Header="Save as" InputGestureText="Ctrl+Shift+S" IsEnabled="{Binding Path=CanSave}" Command="{Binding Path=SaveAsCommand}"/>
+                    <MenuItem Header="Open" InputGestureText="Ctrl+O" Command="{Binding Path=OpenCommand}"/>
+                    <MenuItem Header="Exit" InputGestureText="Alt+F4" Command="{Binding Path=CloseCommand}"/>
+                </MenuItem>
+                <MenuItem Header="ReadingLog" IsEnabled="{Binding Path=HasActiveDocument}">
+                    <MenuItem Header="Add">
+                        <MenuItem Header="Chapter" Command="{Binding Path=AddChapterCommand}"/>
+                        <MenuItem Header="Character" Command="{Binding Path=AddCharacterCommand}"/>
+                    </MenuItem>
                 </MenuItem>
             </Menu>
         </DockPanel>
     </hc:Window.NonClientAreaContent>
-    <hc:TabControl x:Name="ChapterTabs" DockPanel.Dock="Left" ShowCloseButton="False" hc:TabControl.ShowContextMenu="True">
-        <hc:TabControl.ContextMenu>
-            <ContextMenu>
-                <MenuItem Header="Add Chapter"/>
-            </ContextMenu>
-        </hc:TabControl.ContextMenu>
+    <hc:TabControl ShowCloseButton="True" ShowOverflowButton="True" ShowScrollButton="True" DockPanel.Dock="Left" ItemsSource="{Binding Path=Workspaces}" SelectedIndex="{Binding Path=SelectedIndex}" DisplayMemberPath="{Binding Path=TabTitle}">
+        <hc:TabControl.ItemContainerStyle>
+            <Style TargetType="hc:TabItem" BasedOn="{StaticResource {x:Type hc:TabItem}}">
+                <Setter Property="Header" Value="{Binding TabTitle}"/>
+                <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                <Setter Property="ShowCloseButton" Value="{Binding Closeable}"/>
+                <Setter Property="ShowContextMenu" Value="{Binding Closeable}"/>
+            </Style>
+        </hc:TabControl.ItemContainerStyle>
     </hc:TabControl>
 </hc:Window>

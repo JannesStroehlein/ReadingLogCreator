@@ -1,12 +1,17 @@
-﻿<UserControl x:Class="ReadingLogCreator.App.Views.ChapterControl"
+﻿<UserControl x:Class="ReadingLogCreator.App.Views.ReadingLogView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"           
              xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
     </Grid>
 </UserControl>

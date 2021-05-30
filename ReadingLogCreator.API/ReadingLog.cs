@@ -12,11 +12,15 @@ namespace ReadingLogCreator.API
         [JsonProperty("author")]
         public string Author { get; set; }
         [JsonProperty("releaseDate")]
-        public DateTime ReleaseData { get; set; }
+        public DateTime ReleaseDate { get; set; }
         [JsonProperty("chapters")]
         public List<Chapter> Chapters { get; internal set; }
 
-        public void Serialize() => JsonConvert.SerializeObject(this);
+        public ReadingLog()
+        {
+            this.Chapters = new List<Chapter>();
+        }
+        public string Serialize() => JsonConvert.SerializeObject(this);
         public static ReadingLog Deserialize(string json) => JsonConvert.DeserializeObject<ReadingLog>(json);
     }
 }

@@ -2,9 +2,6 @@
 
 ## Goal
 The project tries to simplify the process of creating a reading log for a book. It helps to keep track of the characters and their relations. It also will have a feature to generate a character map.
-- [x] Open Data Structure with API
-- [ ] Boo
-- [ ] Open a pull request
 
 ## Unique Features
 1. Per Book FAQ

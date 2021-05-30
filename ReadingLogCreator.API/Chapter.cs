@@ -16,6 +16,8 @@ namespace ReadingLogCreator.API
         public int EndPage { get; set; }
         [JsonProperty("summary")]
         public string Summary { get; set; }
+        [JsonProperty("notes")]
+        public string Notes { get; set; }
         [JsonProperty("characters")]
         public List<Character> Characters { get; internal set; }
         [JsonProperty("questions")]

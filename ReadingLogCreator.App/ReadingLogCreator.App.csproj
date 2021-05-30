@@ -4,8 +4,8 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <AssemblyVersion>21.5.30.32</AssemblyVersion>
-    <FileVersion>21.5.30.32</FileVersion>
+    <AssemblyVersion>21.5.30.59</AssemblyVersion>
+    <FileVersion>21.5.30.59</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,9 +9,28 @@
              d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
+        <StackPanel Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="{Binding Path=Title}" Style="{StaticResource TextBlockTitle}" DockPanel.Dock="Left"/>
+            <DockPanel>
+                <TextBlock Text="{Binding Path=Author}" DockPanel.Dock="Left" Style="{StaticResource TextBlockSubTitle}" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding Path=ReleaseYear}" DockPanel.Dock="Right" Style="{StaticResource TextBlockSubTitleBold}" Margin="5,0,0,0"/>
+            </DockPanel>
+        </StackPanel>
+        <ListView Grid.Row="1" Margin="3" ItemsSource="{Binding Path=Chapters}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100" Header="Title" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Width="50" Header="Star Page" DisplayMemberBinding="{Binding StartPage}"/>
+                    <GridViewColumn Width="50" Header="End Page" DisplayMemberBinding="{Binding EndPage}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <DockPanel Grid.Row="2">
+            
+        </DockPanel>
     </Grid>
 </UserControl>

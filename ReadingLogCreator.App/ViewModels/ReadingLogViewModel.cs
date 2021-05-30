@@ -1,6 +1,7 @@
 ﻿using ReadingLogCreator.API;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace ReadingLogCreator.App.ViewModels
         public string Title => this.ReadingLog.Title;
         public string Author => this.ReadingLog.Author;
         public int ReleaseYear => this.ReadingLog.ReleaseDate.Year;
+        public ObservableCollection<Chapter> Chapters => this.ReadingLog.Chapters;
         #endregion
         public ReadingLogViewModel(ReadingLog readingLog) : base("Home", false, false)
         {

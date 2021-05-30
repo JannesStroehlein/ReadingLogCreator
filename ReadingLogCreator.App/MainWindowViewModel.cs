@@ -1,4 +1,5 @@
 ﻿using HandyControl.Controls;
+using HandyControl.Tools.Extension;
 using Microsoft.Win32;
 using ReadingLogCreator.API;
 using ReadingLogCreator.App.ViewModels;
@@ -261,7 +262,18 @@ namespace ReadingLogCreator.App
         }
         private void AddChapter()
         {
+            this.MenuEnabled = false;
 
+            NewChapterViewModel newReadingLogView = new NewChapterViewModel();
+            var d = Dialog.Show(newReadingLogView);
+            newReadingLogView.onCreated += delegate (object s, Chapter e)
+            {
+                d.Close();
+                this.ActiveDocument.Chapters.Add(e);
+                this.CanSave = true;
+                this.MenuEnabled = true;
+            };
+            newReadingLogView.RequestClose += delegate { this.MenuEnabled = true; d.Close(); };
         }
         private void AddCharacter()
         {
@@ -272,19 +284,20 @@ namespace ReadingLogCreator.App
             if (!this.CanSave)
             {
                 this.MenuEnabled = false;
-                NewReadingLogView newReadingLogView = new NewReadingLogView();
-                newReadingLogView.onCreated += NewReadingLogView_onCreated;
-                newReadingLogView.RequestClose += delegate { this.MenuEnabled = true; };
-                this.Workspaces.Add(newReadingLogView);
+
+                NewReadingLogViewModel newReadingLogView = new NewReadingLogViewModel();
+                var d = Dialog.Show(newReadingLogView);
+                newReadingLogView.onCreated += delegate(object s, ReadingLog e)
+                { 
+                    d.Close();
+                    this.ActiveDocument = e;
+                    this.CanSave = true;
+                    this.MenuEnabled = true;
+                    this.HasActiveDocument = true;
+                    this.OpenReadingLogTab();
+                };
+                newReadingLogView.RequestClose += delegate { this.MenuEnabled = true; d.Close(); };
             }
-        }
-        private void NewReadingLogView_onCreated(object sender, ReadingLog e)
-        {
-            this.ActiveDocument = e;
-            this.CanSave = true;
-            this.MenuEnabled = true;
-            this.HasActiveDocument = true;
-            this.OpenReadingLogTab();
         }
         private void Close()
         {

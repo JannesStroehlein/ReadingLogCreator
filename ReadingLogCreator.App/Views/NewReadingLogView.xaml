@@ -1,20 +1,24 @@
-﻿<UserControl x:Class="ReadingLogCreator.App.Views.NewReadingLogView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:hc="https://handyorg.github.io/handycontrol"           
-             xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="400">
-    <StackPanel>
-        <hc:TextBox hc:InfoElement.Title="Name" hc:InfoElement.Placeholder="Name" hc:InfoElement.Necessary="True" Margin="3" Text="{Binding Path=Title}"/>
-        <hc:TextBox hc:InfoElement.Title="Author" hc:InfoElement.Placeholder="Author" hc:InfoElement.Necessary="True" Margin="3" Text="{Binding Path=Author}"/>
-        <hc:DatePicker hc:InfoElement.Title="Release Date" hc:InfoElement.Placeholder="Release Date" hc:InfoElement.Necessary="True" Margin="3" SelectedDate="{Binding Path=ReleaseDate}"/>
+﻿<Border x:Class="ReadingLogCreator.App.Views.NewReadingLogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hc="https://handyorg.github.io/handycontrol"           
+        xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
+        mc:Ignorable="d" 
+        CornerRadius="10"
+        Width="400" Height="300">
+    <hc:Card>
+        <StackPanel Margin="10">
+            <TextBlock Text="New Reading Log" Style="{StaticResource TextBlockTitle}"/>
+            <hc:TextBox hc:InfoElement.Title="Name" hc:InfoElement.Placeholder="Name" hc:InfoElement.Necessary="True" Margin="3" Text="{Binding Path=Title}"/>
+            <hc:TextBox hc:InfoElement.Title="Author" hc:InfoElement.Placeholder="Author" hc:InfoElement.Necessary="True" Margin="3" Text="{Binding Path=Author}"/>
+            <hc:DatePicker hc:InfoElement.Title="Release Date" hc:InfoElement.Placeholder="Release Date" hc:InfoElement.Necessary="True" Margin="3" SelectedDate="{Binding Path=ReleaseDate}"/>
 
-        <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
-            <Button DockPanel.Dock="Left" Margin="5" Content="Cancel" Style="{StaticResource ButtonDanger}" Command="{Binding Path=CancelCommand}"/>
-            <Button DockPanel.Dock="Right" Margin="5" IsEnabled="{Binding Path=CanCreate}" Content="Create" Style="{StaticResource ButtonSuccess}" Command="{Binding Path=CreateCommand}"/>
-        </DockPanel>
-    </StackPanel>
-</UserControl>
+            <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
+                <Button DockPanel.Dock="Left" Margin="5" Content="Cancel" Style="{StaticResource ButtonDanger}" Command="{Binding Path=CancelCommand}"/>
+                <Button DockPanel.Dock="Right" Margin="5" IsEnabled="{Binding Path=CanCreate}" Content="Create" Style="{StaticResource ButtonSuccess}" Command="{Binding Path=CreateCommand}"/>
+            </DockPanel>
+        </StackPanel>
+    </hc:Card>
+</Border>

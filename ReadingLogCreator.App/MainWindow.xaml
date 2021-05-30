@@ -17,8 +17,11 @@
             <DataTemplate DataType="{x:Type vm:ReadingLogViewModel}">
                 <vw:ReadingLogView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:NewReadingLogView}">
+            <DataTemplate DataType="{x:Type vm:NewReadingLogViewModel}">
                 <vw:NewReadingLogView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NewChapterViewModel}">
+                <vw:NewChapterView/>
             </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
@@ -35,7 +38,6 @@
                 <MenuItem Header="ReadingLog" IsEnabled="{Binding Path=HasActiveDocument}">
                     <MenuItem Header="Add">
                         <MenuItem Header="Chapter" Command="{Binding Path=AddChapterCommand}"/>
-                        <MenuItem Header="Character" Command="{Binding Path=AddCharacterCommand}"/>
                     </MenuItem>
                 </MenuItem>
             </Menu>

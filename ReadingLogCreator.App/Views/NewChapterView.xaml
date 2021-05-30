@@ -1,0 +1,26 @@
+﻿<Border x:Class="ReadingLogCreator.App.Views.NewChapterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:hc="https://handyorg.github.io/handycontrol"           
+        xmlns:local="clr-namespace:ReadingLogCreator.App.Views"
+        mc:Ignorable="d" 
+        CornerRadius="10"
+        Width="400" Height="300">
+    <Grid>
+        <hc:Card>
+            <StackPanel Margin="10">
+                <TextBlock Text="New Chapter" Style="{StaticResource TextBlockTitle}"/>
+                <hc:TextBox hc:InfoElement.Title="Title" hc:InfoElement.Placeholder="Title" hc:InfoElement.Necessary="True" Margin="3" Text="{Binding Path=Title}"/>
+                <hc:NumericUpDown hc:InfoElement.Title="Start Page" hc:InfoElement.Placeholder="Start Page" hc:InfoElement.Necessary="True" Margin="3" Value="{Binding Path=StartPage}"/>
+                <hc:NumericUpDown hc:InfoElement.Title="End Page" hc:InfoElement.Placeholder="End Page" hc:InfoElement.Necessary="True" Margin="3" Value="{Binding Path=EndPage}"/>
+
+                <DockPanel LastChildFill="False" VerticalAlignment="Bottom">
+                    <Button DockPanel.Dock="Left" Margin="5" Content="Cancel" Style="{StaticResource ButtonDanger}" Command="{Binding Path=CancelCommand}"/>
+                    <Button DockPanel.Dock="Right" Margin="5" IsEnabled="{Binding Path=CanCreate}" Content="Create" Style="{StaticResource ButtonSuccess}" Command="{Binding Path=CreateCommand}"/>
+                </DockPanel>
+            </StackPanel>
+        </hc:Card>
+    </Grid>
+</Border>

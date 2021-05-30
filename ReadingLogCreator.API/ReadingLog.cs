@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
 namespace ReadingLogCreator.API
@@ -14,11 +15,11 @@ namespace ReadingLogCreator.API
         [JsonProperty("releaseDate")]
         public DateTime ReleaseDate { get; set; }
         [JsonProperty("chapters")]
-        public List<Chapter> Chapters { get; internal set; }
+        public ObservableCollection<Chapter> Chapters { get; internal set; }
 
         public ReadingLog()
         {
-            this.Chapters = new List<Chapter>();
+            this.Chapters = new ObservableCollection<Chapter>();
         }
         public string Serialize() => JsonConvert.SerializeObject(this);
         public static ReadingLog Deserialize(string json) => JsonConvert.DeserializeObject<ReadingLog>(json);

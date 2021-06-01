@@ -14,6 +14,7 @@ namespace ReadingLogCreator.App.ViewModels
     {
         #region Fields
         private Chapter Chapter;
+        private ReadingLog ReadingLog;
         private RelayCommand _CreateExtraDataCommand;
         private ObservableCollection<KeyValuePair<string, string>> _ExtraInformation;
         #endregion
@@ -22,7 +23,6 @@ namespace ReadingLogCreator.App.ViewModels
         public string Title => this.Chapter.Title;
         public int StartPage => this.Chapter.StartPage;
         public int EndPage => this.Chapter.EndPage;
-        public int Index => this.Chapter.Index;
 
         public string Summary
         {
@@ -47,6 +47,7 @@ namespace ReadingLogCreator.App.ViewModels
             }
         }
 
+        public ObservableCollection<Character> Characters => this.ReadingLog.Characters;
         public ObservableCollection<CharacterRelation> Relations => this.Chapter.Relations;
         public ObservableCollection<FAQQuestion> Questions => this.Chapter.Questions;
         public ObservableCollection<KeyValuePair<string, string>> ExtraInformation
@@ -78,9 +79,10 @@ namespace ReadingLogCreator.App.ViewModels
         #endregion
 
 
-        public ChapterViewModel(Chapter chapter) : base("Chapter #" + chapter.Index, true, false)
+        public ChapterViewModel(Chapter chapter, ReadingLog readingLog) : base(string.Format("{0:20}", chapter.Title), true, false)
         {
             this.Chapter = chapter;
+            this.ReadingLog = readingLog;
             this.ExtraInformation = new ObservableCollection<KeyValuePair<string, string>>();
         }
         private void CreateExtraData()

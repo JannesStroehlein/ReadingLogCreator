@@ -275,7 +275,7 @@ namespace ReadingLogCreator.App
             var d = Dialog.Show(newReadingLogView);
             newReadingLogView.onCreated += delegate (object s, Chapter e)
             {
-                this.ActiveDocument.Chapters.Add(e);
+                this.ActiveDocument.NewChapter(e.Title, e.StartPage, e.EndPage);
                 this.CanSave = true;
                 this.MenuEnabled = true;
             };
@@ -283,7 +283,17 @@ namespace ReadingLogCreator.App
         }
         private void AddCharacter()
         {
+            this.MenuEnabled = false;
 
+            NewCharacterViewModel newReadingLogView = new NewCharacterViewModel();
+            var d = Dialog.Show(newReadingLogView);
+            newReadingLogView.onCreated += delegate (object s, Character e)
+            {
+                this.ActiveDocument.NewCharacter(e.Name);
+                this.CanSave = true;
+                this.MenuEnabled = true;
+            };
+            newReadingLogView.requestsClose += delegate { this.MenuEnabled = true; d.Close(); };
         }
         private void NewReadingLog()
         {

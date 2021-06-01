@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Newtonsoft.Json;
 
@@ -9,8 +10,8 @@ namespace ReadingLogCreator.API
     {
         [JsonProperty("title")]
         public string Title { get; set; }
-        [JsonProperty("index")]
-        public int Index { get; internal set; }
+        [JsonProperty("guid")]
+        public Guid Guid { get; internal set; }
         [JsonProperty("startPage")]
         public int StartPage { get; set; }
         [JsonProperty("endPage")]

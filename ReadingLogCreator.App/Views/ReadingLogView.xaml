@@ -24,7 +24,6 @@
         <GroupBox Header="Chapters" Grid.Row="1" Margin="3">
             <DataGrid hc:DataGridAttach.ShowRowNumber="False" IsReadOnly="True" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" ItemsSource="{Binding Path=Chapters}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Index" Binding="{Binding Path=Index}"/>
                     <DataGridTextColumn Header="Title" Width="1*" Binding="{Binding Path=Title}"/>
                     <DataGridTextColumn Header="Start Page" Binding="{Binding Path=StartPage}"/>
                     <DataGridTextColumn Header="End Page" Binding="{Binding Path=EndPage}"/>

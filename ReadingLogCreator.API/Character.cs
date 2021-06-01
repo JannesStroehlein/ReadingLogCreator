@@ -18,11 +18,5 @@ namespace ReadingLogCreator.API
         public List<CharacterRelation> Relations { get; internal set; }
         [JsonProperty("extraInformation")]
         public Dictionary<string, string> ExtraInformation { get; internal set; }
-
-        public Character(string Name)
-        {
-            this.Name = Name;
-            this.Guid = Guid.NewGuid();
-        }
     }
 }

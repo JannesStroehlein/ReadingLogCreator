@@ -29,6 +29,9 @@
             <DataTemplate DataType="{x:Type vm:NewExtraDataViewModel}">
                 <vw:AddExtraDataView/>
             </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:NewCharacterViewModel}">
+                <vw:NewCharacterView/>
+            </DataTemplate>
         </ResourceDictionary>
     </Window.Resources>
     <hc:Window.NonClientAreaContent>
@@ -44,6 +47,7 @@
                 <MenuItem Header="ReadingLog" IsEnabled="{Binding Path=HasActiveDocument}">
                     <MenuItem Header="Add">
                         <MenuItem Header="Chapter" Command="{Binding Path=AddChapterCommand}"/>
+                        <MenuItem Header="Character" Command="{Binding Path=AddCharacterCommand}"/>
                     </MenuItem>
                 </MenuItem>
             </Menu>

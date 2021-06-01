@@ -15,7 +15,30 @@
             <hc:TextBox Text="{Binding Path=Notes}"/>
         </hc:TabItem>
         <hc:TabItem Header="Characters">
-
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Button Height="30" Width="30" Margin="3" Command="{Binding Path=CreateRelationCommand}" HorizontalAlignment="Right" Content="Add" Style="{StaticResource ButtonIcon}" hc:IconElement.Geometry="{StaticResource AddGeometry}" Background="{DynamicResource SuccessBrush}"/>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Path=ExtraInformation}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Source">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Command="{Binding Path=DataContext.OpenChapterViewCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" Style="{StaticResource ButtonIcon}" hc:IconElement.Geometry="{StaticResource EyeOpenGeometry}"/>
+                                        <Button Command="{Binding Path=DataContext.DeleteChapterCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}" Style="{StaticResource ButtonIcon}" Foreground="{DynamicResource DangerBrush}" hc:IconElement.Geometry="{StaticResource DeleteFillCircleGeometry}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Source" Binding="{Binding Path=Key}"/>
+                        <DataGridTextColumn Header="Target" Binding="{Binding Path=Value}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </hc:TabItem>
         <hc:TabItem Header="Addition Data">
             <Grid>

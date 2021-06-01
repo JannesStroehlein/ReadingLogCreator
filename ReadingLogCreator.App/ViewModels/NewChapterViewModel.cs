@@ -58,7 +58,7 @@ namespace ReadingLogCreator.App.ViewModels
 
         public override void Create()
         {
-            this.RetrunObject(new Chapter() { Title = this.Title, StartPage = this.StartPage, EndPage = this.EndPage });
+            this.RetrunObject(new Chapter() { Title = this.Title, StartPage = this.StartPage, EndPage = this.EndPage});
         }
     }
 }

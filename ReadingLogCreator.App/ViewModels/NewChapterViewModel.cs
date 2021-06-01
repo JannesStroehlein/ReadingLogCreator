@@ -4,40 +4,11 @@ using System.Windows.Input;
 
 namespace ReadingLogCreator.App.ViewModels
 {
-    public class NewChapterViewModel : WorkspaceViewModel
+    public class NewChapterViewModel : CreationDialogViewModelBase<Chapter>
     {
-        private RelayCommand _CancelCommand;
-        private RelayCommand _CreateCommand;
-
         private string _Title;
         private int _StartPage;
         private int _EndPage;
-        private bool _CanCreate;
-
-        public event EventHandler<Chapter> onCreated;
-
-        public ICommand CancelCommand
-        {
-            get
-            {
-                if (_CancelCommand == null)
-                {
-                    _CancelCommand = new RelayCommand(param => this.Close());
-                }
-                return _CancelCommand;
-            }
-        }
-        public ICommand CreateCommand
-        {
-            get
-            {
-                if (_CreateCommand == null)
-                {
-                    _CreateCommand = new RelayCommand(param => this.Create());
-                }
-                return _CreateCommand;
-            }
-        }
 
         public string Title
         {
@@ -75,21 +46,6 @@ namespace ReadingLogCreator.App.ViewModels
                 this.CanCreate = this.CheckCanCreate();
             }
         }
-        public bool CanCreate
-        {
-            get { return this._CanCreate; }
-            set
-            {
-                if (value == this._CanCreate)
-                    return;
-                this._CanCreate = value;
-                base.OnPropertyChanged();
-            }
-        }
-
-        public NewChapterViewModel() : base("New Chapter", false, true)
-        {
-        }
 
         private bool CheckCanCreate()
         {
@@ -99,12 +55,10 @@ namespace ReadingLogCreator.App.ViewModels
                 return false;
             return true;
         }
-        private void Create()
+
+        public override void Create()
         {
-            EventHandler<Chapter> handler = this.onCreated;
-            if (handler != null)
-                handler(this, new Chapter() {Title = this.Title, StartPage = this.StartPage, EndPage = this.EndPage});
-            this.Close();
+            this.RetrunObject(new Chapter() { Title = this.Title, StartPage = this.StartPage, EndPage = this.EndPage });
         }
     }
 }

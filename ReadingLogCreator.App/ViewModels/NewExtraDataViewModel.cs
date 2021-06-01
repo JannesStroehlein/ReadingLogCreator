@@ -7,39 +7,10 @@ using System.Windows.Input;
 
 namespace ReadingLogCreator.App.ViewModels
 {
-    class NewExtraDataViewModel : WorkspaceViewModel
+    class NewExtraDataViewModel : CreationDialogViewModelBase<KeyValuePair<string, string>>
     {
-        private RelayCommand _CancelCommand;
-        private RelayCommand _CreateCommand;
-
         private string _Key;
         private string _Value;
-        private bool _CanCreate;
-
-        public event EventHandler<KeyValuePair<string, string>> onCreated;
-
-        public ICommand CancelCommand
-        {
-            get
-            {
-                if (_CancelCommand == null)
-                {
-                    _CancelCommand = new RelayCommand(param => this.Close());
-                }
-                return _CancelCommand;
-            }
-        }
-        public ICommand CreateCommand
-        {
-            get
-            {
-                if (_CreateCommand == null)
-                {
-                    _CreateCommand = new RelayCommand(param => this.Create());
-                }
-                return _CreateCommand;
-            }
-        }
 
         public string Key
         {
@@ -65,22 +36,10 @@ namespace ReadingLogCreator.App.ViewModels
                 this.CanCreate = this.CheckCanCreate();
             }
         }
-        public bool CanCreate
+        public override void Create()
         {
-            get { return this._CanCreate; }
-            set
-            {
-                if (value == this._CanCreate)
-                    return;
-                this._CanCreate = value;
-                base.OnPropertyChanged();
-            }
+            this.RetrunObject(new KeyValuePair<string, string>(this.Key, this.Value));
         }
-
-        public NewExtraDataViewModel() : base("New Chapter", false, true)
-        {
-        }
-
         private bool CheckCanCreate()
         {
             if (string.IsNullOrWhiteSpace(this.Key))
@@ -88,13 +47,6 @@ namespace ReadingLogCreator.App.ViewModels
             if (string.IsNullOrWhiteSpace(this.Value))
                 return false;
             return true;
-        }
-        private void Create()
-        {
-            EventHandler<KeyValuePair<string, string>> handler = this.onCreated;
-            if (handler != null)
-                handler(this, new KeyValuePair<string, string>(this.Key, this.Value));
-            this.Close();
         }
     }
 }

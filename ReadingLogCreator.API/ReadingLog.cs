@@ -16,9 +16,12 @@ namespace ReadingLogCreator.API
         public DateTime ReleaseDate { get; set; }
         [JsonProperty("chapters")]
         public ObservableCollection<Chapter> Chapters { get; internal set; }
+        [JsonProperty("characters")]
+        public ObservableCharacterCollection Characters { get; internal set; }
 
         public ReadingLog()
         {
+            this.Characters = new ObservableCharacterCollection();
             this.Chapters = new ObservableCollection<Chapter>();
         }
         public string Serialize() => JsonConvert.SerializeObject(this);

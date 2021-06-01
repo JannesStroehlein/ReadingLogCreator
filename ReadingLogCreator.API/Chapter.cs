@@ -19,8 +19,8 @@ namespace ReadingLogCreator.API
         public string Summary { get; set; }
         [JsonProperty("notes")]
         public string Notes { get; set; }
-        [JsonProperty("characters")]
-        public ObservableCollection<Character> Characters { get; internal set; }
+        [JsonProperty("relations")]
+        public ObservableCollection<CharacterRelation> Relations { get; internal set; }
         [JsonProperty("questions")]
         public ObservableCollection<FAQQuestion> Questions { get; internal set; }
         [JsonProperty("extraInformation")]
@@ -28,7 +28,7 @@ namespace ReadingLogCreator.API
 
         public Chapter()
         {
-            this.Characters = new ObservableCollection<Character>();
+            this.Relations = new ObservableCollection<CharacterRelation>();
             this.Questions = new ObservableCollection<FAQQuestion>();
             this.ExtraInformation = new Dictionary<string, string>();
         }

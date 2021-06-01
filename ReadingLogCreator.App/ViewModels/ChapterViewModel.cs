@@ -47,7 +47,7 @@ namespace ReadingLogCreator.App.ViewModels
             }
         }
 
-        public ObservableCollection<Character> Characters => this.Chapter.Characters;
+        public ObservableCollection<CharacterRelation> Relations => this.Chapter.Relations;
         public ObservableCollection<FAQQuestion> Questions => this.Chapter.Questions;
         public ObservableCollection<KeyValuePair<string, string>> ExtraInformation
         {
@@ -89,10 +89,9 @@ namespace ReadingLogCreator.App.ViewModels
             var d = Dialog.Show(newReadingLogView);
             newReadingLogView.onCreated += delegate (object s, KeyValuePair<string, string> e)
             {
-                d.Close();
                 this.ExtraInformation.Add(e);
             };
-            newReadingLogView.RequestClose += delegate { d.Close(); };
+            newReadingLogView.requestsClose += delegate { d.Close(); };
         }
     }
 }

@@ -275,12 +275,11 @@ namespace ReadingLogCreator.App
             var d = Dialog.Show(newReadingLogView);
             newReadingLogView.onCreated += delegate (object s, Chapter e)
             {
-                d.Close();
                 this.ActiveDocument.Chapters.Add(e);
                 this.CanSave = true;
                 this.MenuEnabled = true;
             };
-            newReadingLogView.RequestClose += delegate { this.MenuEnabled = true; d.Close(); };
+            newReadingLogView.requestsClose += delegate { this.MenuEnabled = true; d.Close(); };
         }
         private void AddCharacter()
         {
@@ -296,14 +295,13 @@ namespace ReadingLogCreator.App
                 var d = Dialog.Show(newReadingLogView);
                 newReadingLogView.onCreated += delegate(object s, ReadingLog e)
                 { 
-                    d.Close();
                     this.ActiveDocument = e;
                     this.CanSave = true;
                     this.MenuEnabled = true;
                     this.HasActiveDocument = true;
                     this.OpenReadingLogTab();
                 };
-                newReadingLogView.RequestClose += delegate { this.MenuEnabled = true; d.Close(); };
+                newReadingLogView.requestsClose += delegate { this.MenuEnabled = true; d.Close(); };
             }
         }
         private void Close()

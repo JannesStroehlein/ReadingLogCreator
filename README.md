@@ -22,20 +22,22 @@ The project tries to simplify the process of creating a reading log for a book. 
   - Title
   - Author
   - Release Data
+  - Characters
+    - Name
+    - Is Main Character
+    - Extra Information
   - Chapters
     - Title
     - Start Page
     - End Page
     - Summary
     - Notes
-    - Characters
-      - Name
-      - Is Main Character
-      - Relations
-        - Peer
-        - Relation Type
-        - Is Terminated
-      - Extra Information
+    - Character Relations
+      - Source
+      - Target
+      - Relation Type
+      - Is Terminated
+    - Extra Information
     - FAQ Questions
       - Title
       - Text
